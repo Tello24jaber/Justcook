@@ -670,7 +670,7 @@ footer {
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Ready to Cook, <span style="color: var(--primary);">Ready to Enjoy</span></h1>
+            <h1><span style="color: var(--primary);">Just Cook</span></h1>
             <p>Premium ingredients, perfectly portioned, seasoned and ready for you to cook at home. Restaurant quality
                 meals without the hassle.</p>
             <a href="#products" class="btn btn-primary">Shop Now</a>
@@ -724,14 +724,14 @@ footer {
             <div class="delivery-options">
                 <div class="delivery-option">
                     <h3><i>🚚</i> Home Delivery</h3>
-                    <p>We deliver to your doorstep within a 15-mile radius of our store. Delivery is available 7 days a
-                        week from 10 AM to 8 PM.</p>
-                    <p>Delivery fee: $3.99<br>Free delivery on orders over $30</p>
-                    <p>Average delivery time: 30-45 minutes</p>
+                    <p>We deliver to your doorstep in Ramallah and it's villages. Delivery is available 7 days a
+                        week from 1 AM to 10 PM.</p>
+                    <p>Delivery fee is based on your location<br>Free delivery on orders over 15$ </p>
+                    <p>Average delivery time: 40-60 minutes</p>
                 </div>
                 <div class="delivery-option">
                     <h3><i>🏬</i> Store Pickup</h3>
-                    <p>Order online and pick up at our store at your convenience. Your order will be ready in just 15
+                    <p>Order online and pick up at our store at your convenience. Your order will be ready in 30
                         minutes.</p>
                     <p>Store address:<br>Ramallah<br>Ein Musbah, Main street, next to Al-Kamal supermarket</p>
                     <p>pickup hours: 1 AM - 11 PM daily</p>
@@ -803,7 +803,7 @@ footer {
               
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Jaber.co. All rights reserved.</p>
+                <p>&copy; 2025 Jaber.co All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -824,11 +824,11 @@ footer {
             </div>
             <div class="cart-summary-row">
                 <span>Delivery:</span>
-                <span id="cart-delivery">$3.99</span>
+                <span id="cart-delivery">$1.99</span>
             </div>
             <div class="cart-summary-row total">
                 <span>Total:</span>
-                <span id="cart-total">$3.99</span>
+                <span id="cart-total">$1.99</span>
             </div>
             <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
         </div>
@@ -870,7 +870,7 @@ footer {
             <div class="form-group">
                 <label for="contact-method">Preferred Contact Method</label>
                 <select id="contact-method" onchange="toggleContactFields()">
-                    <option value="email">Email</option>
+                    
                     <option value="phone">Phone Call</option>
                     <option value="whatsapp">WhatsApp</option>
                 </select>
@@ -888,16 +888,13 @@ footer {
                 <label for="city">City</label>
                 <input type="text" id="city">
             </div>
-            <div class="form-group delivery-address">
-                <label for="zip">ZIP Code</label>
-                <input type="text" id="zip">
-            </div>
+            
             <div class="form-group">
                 <label for="payment">Payment Method</label>
                 <select id="payment">
-                    <option value="card">Credit/Debit Card</option>
-                    <option value="paypal">PayPal</option>
-                    <option value="cash">Cash on Delivery</option>
+                    <option value="card">Credit/Debit Card (via machine)</option>
+                    
+                    <option value="cash">Cash</option>
                 </select>
             </div>
             <div class="form-group">
@@ -907,7 +904,7 @@ footer {
             <div class="form-group">
                 <label for="contact-method">How would you like to receive order confirmations?</label>
                 <select id="contact-method" onchange="toggleContactFields()">
-                    <option value="email">Email</option>
+                    <option value="phone">Phone Call</option>
                     <option value="whatsapp">WhatsApp</option>
                 </select>
             </div>
@@ -928,66 +925,66 @@ footer {
         const products = [
     {
         id: 1,
-        name: "Classic Chicken Dinner",
-        description: "Seasoned chicken breasts with roasted vegetables and herb butter.",
-        price: 14.99,
-        image: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+        name: "Vine Leaves",
+        description: "stuffed vine leaves with rice and meat",
+        price: 5.99,
+        image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473189139_122224203482028929_1936030488887112106_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=CyD68s8BghwQ7kNvwEkfRIy&_nc_oc=AdmQO7MXz7_myjX0ONG-IZGjNWrwOTn6y27VxSJ1UTp5AOJGu5lMH3jwwy-qenMrPS8&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=CU4WcysUsHWACNKXvgthMQ&oh=00_AYFxuVfxQ4LdBeKhcwDot2ZApD0DFwZqBlbBQgHCAagh9Q&oe=67F59184"
     },
     {
         id: 2,
-        name: "Mediterranean Salmon",
-        description: "Fresh salmon fillets with lemon, herbs, olives and cherry tomatoes.",
-        price: 16.99,
-        image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+        name: "Chopped vegetables",
+        description: "Chopped vegetables for (Maqlouba)",
+        price: 3.99,
+        image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473567276_122224203104028929_1760873919538438817_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=LmLziwaGQFYQ7kNvwEBmuM_&_nc_oc=AdnR2cFD0FqKoSn36YCWgxp6-2MCCCkybnCn-dZjbyIiR6OXQ1o8mUfIQ1fvZ-af-Zc&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=SfnOycs4IyJ0sH8Llt1ByA&oh=00_AYExErHyb5re91eohF5KbZlT-OqC6eoj7RYWv7jRqa8Slg&oe=67F5B7C7"
     },
     {
         id: 3,
-        name: "Beef Stir Fry Kit",
-        description: "Sliced premium beef with fresh vegetables and our signature sauce.",
-        price: 15.99,
-        image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+        name: "Cabbage ",
+        description: "cabbage stuffed with rice and meat for (Malfouf)",
+        price: 4.99,
+        image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473428057_122224203578028929_33452605139705403_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Jg4Mh-sJELMQ7kNvwGJVgOI&_nc_oc=AdmwHIRdChCr6cf3IDWMd3NXTeeU-DL3r0R_gCBXZ8LNgK85t12z7krqvLfphNTwPmw&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=CCfRn749zHNJdOTE0lK2bg&oh=00_AYHvLhPDFACBKmLZfSlvnxGNV4Dsp1Q0LQF0GZR9VuOOZA&oe=67F5B024"
     },
     {
         id: 4,
-        name: "Vegetable Pasta Primavera",
-        description: "Fresh pasta with seasonal vegetables, garlic and parmesan.",
-        price: 12.99,
-        image: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+        name: "Makhshi",
+        description: "Zucchini stuffed with meat and onions for (Makhshi)",
+        price: 5.99,
+        image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473078575_122224203590028929_4519399291118971478_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=CyTN39QBZXMQ7kNvwHgtKXw&_nc_oc=AdkD3k3XC-pJzhMw3zJYOg48MvCwEJ7OOAGGXiJScEi93VIn4lHfY5z-weWVYoU2fr0&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=6dVuSJ-kaYJRWEBQtPj-yw&oh=00_AYEh_IWu1EOJgh9Cghi1rO7zGBFCMySIeBPhrWwOjQCdqw&oe=67F5AAB9"
     },
     {
         id: 5,
-        name: "Spicy Shrimp Tacos",
-        description: "Marinated shrimp with slaw, avocado and homemade spicy sauce.",
-        price: 14.49,
-        image: "https://images.unsplash.com/photo-1512838243191-e81e8f66f1fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+        name: "Salmon",
+        description: "ready Salmon with herbs and vegetables",
+        price: 8.49,
+        image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473309856_122224203656028929_4150288380146970553_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=WuYxcHN3lVEQ7kNvwFvODxz&_nc_oc=AdlhNSTLZJHGAEv5h8S9HulGVAFFWR2r1UKW5oeQCmHqc0Z6_yFFsXYrjM7xOM235_0&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=gCKImQGAPfS1lJNJSYEOlg&oh=00_AYGsapK0S5gpiqwbXWLFPcFbRoG846wDa2A5gO3tDMfNzw&oe=67F5AEFB"
     },
     {
         id: 6,
-        name: "Garlic Herb Steak",
-        description: "Premium steak with garlic herb butter and roasted potatoes.",
-        price: 18.99,
-        image: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+        name: "Zucchini",
+        description: "cored zucchini",
+        price: 3.99,
+        image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/482092574_122234600438028929_9059919598890993654_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=CtvfFV5BrUUQ7kNvwHiWCRU&_nc_oc=AdlBccnFEBF5oboIAKnstKoDR16rNFTIqGHrfF3B0pWqPSBMJV28zzWTR88rCsU4iHI&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=_ADFdGK7XIyJMrWfXicx-Q&oh=00_AYEFFhZMHRG3bgsy6wkQ4Iyrzh2-yCGek_08Xdymm2d37w&oe=67F5B8EE"
     },
     {
         id: 7,
-        name: "Thai Curry Kit",
-        description: "Authentic Thai curry with your choice of protein and fresh vegetables.",
-        price: 13.99,
-        image: "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+        name: "Kibbeh",
+        description: "stuffed with ground meat and onions",
+        price: 4.99,
+        image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/480449107_122234600462028929_3028387972017383613_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=-vGw_BKj99gQ7kNvwFjchTf&_nc_oc=AdmR51FzzuDCeTOQVrWM6rfEfPJXhHlYBSP6OZJBJ1b8TFCRKU-gvvhnt6B7WgZjAm0&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=hzP2oDJ4tYgJU3YwAsOqDQ&oh=00_AYER1fZBgpiNTcDelAy4lW4tj4CO2-ozTgYeJRx3s3ex3A&oe=67F59CA5"
     },
     {
         id: 8,
-        name: "Family Roast Chicken",
-        description: "Whole seasoned chicken with vegetables for the entire family.",
-        price: 22.99,
-        image: "https://images.unsplash.com/photo-1518492104633-130d0cc84637?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+        name: "Family Chicken",
+        description: "A whole chicken stuffed with vine leaves",
+        price: 14.99,
+        image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/470667568_122219972066028929_5658429188180535149_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=QGxmRt6eaa8Q7kNvwHY4569&_nc_oc=Adl7SdCYBxEWVElRuhFxoE-JiiBbneLhVzA9szomWPHSqXFhkNEXvYwwO0p9S5cyXdM&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=m2aRHAXPhfHwwUvrtPOxtg&oh=00_AYEUNCZA3KtrNbPZusI_n355FnPk3zpDnfuKUWpwvhvBDA&oe=67F5AD13"
     }
 ];
 
 // Cart functionality
 let cart = [];
-const deliveryFee = 3.99;
-const freeDeliveryThreshold = 30;
+const deliveryFee = 1.99;
+const freeDeliveryThreshold = 15;
 
 // DOM Elements
 const productContainer = document.getElementById('product-container');
@@ -1288,25 +1285,58 @@ function toggleContactFields() {
 }
 
 // Add to your checkout form submission handler
-document.querySelector('.checkout-form').addEventListener('submit', function (e) {
+document.querySelector('.checkout-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    // Get values from form
-    const contactMethod = document.getElementById('contact-method').value;
-    let contactDetails = '';
+    // 1. Gather order details
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const deliveryType = document.querySelector('input[name="delivery"]:checked').value;
+    const address = deliveryType === 'delivery' ? document.getElementById('address').value : 'Pickup';
+    const payment = document.getElementById('payment').value;
+    const notes = document.getElementById('notes').value;
 
-    if (contactMethod === 'whatsapp') {
-        contactDetails = document.getElementById('whatsapp').value;
-        // In a real implementation, you would use a WhatsApp API or Business API
-        console.log('Order would be sent to WhatsApp number: ' + contactDetails);
+    // 2. Format order items
+    const orderItems = cart.map(item => ({
+        name: item.name,
+        quantity: item.quantity,
+        price: (item.price * item.quantity).toFixed(2)
+    }));
+
+    // 3. Calculate total
+    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    const shipping = subtotal >= freeDeliveryThreshold ? 0 : deliveryFee;
+    const total = (subtotal + shipping).toFixed(2);
+
+    // 4. Send to Python server
+    try {
+        const response = await fetch('http://localhost:5000/send-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: name,
+                phone: phone,
+                items: orderItems,
+                total: total,
+                address: address,
+                notes: notes
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            alert("Order sent successfully! We'll confirm shortly.");
+            cart = [];
+            updateCart();
+            closeCheckoutModal();
+            closeCartFunc();
+        } else {
+            alert("Error: " + (result.error || "Failed to send order."));
+        }
+    } catch (error) {
+        alert("Network error. Please call +962 790489125 to confirm.");
     }
-
-    // Simulate order processing
-    alert('Thank you for your order! Your delicious food will be on its way soon.');
-    cart = [];
-    updateCart();
-    closeCheckoutModal();
-    closeCartFunc();
 });
 
 // Call this on page load
