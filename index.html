@@ -746,7 +746,7 @@ footer {
             <h2 class="section-title">About <span>Us</span></h2>
             <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
                 <div style="flex: 1; min-width: 300px;">
-                    <img src="https://scontent.ftlv3-1.fna.fbcdn.net/v/t39.30808-6/478607685_122234600414028929_748410527012050135_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGYvOTSHeNJla5X4O4yAmpJHu5A4GYMW-Ie7kDgZgxb4h8iaZY-p9AyjOYC313LrYac1NqZ5Joip-Z-Z1QpHZfq&_nc_ohc=q4gpOgR2DmwQ7kNvgH_5GT1&_nc_oc=Adk-jl7tJRZzspQLBM5zM-8WVBr0Q5Sf1K4MNbhBI9LbVVnnSkKoscI3CCsyp2xnhMI&_nc_zt=23&_nc_ht=scontent.ftlv3-1.fna&_nc_gid=gD47nUoVLK4rndxMmx3x4Q&oh=00_AYGgEwHZY1niRnVyjScBi1zHc_9xSxPN0vo0LIK-u-jHig&oe=67F01946" alt="Our Store" style="width: 100%; border-radius: 10px;">
+                    <img src="https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/483369147_122234600420028929_1377029657629626266_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEfKEDYdSOVbJlCPqP43NVlhHQk_3KEcSCEdCT_coRxICKFelFqnUcu6uXRZHDl3cfDKRtL3pvSutI-0fZNDb58&_nc_ohc=uTpHPmQFui4Q7kNvwFQsvd7&_nc_oc=Admfcix42wUMih0ZDTGCi3ZbrWl35ugFXoESM1cPtLJSWlMQpMZdsqMwNGoWifPiawE&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=ZXbWepPcefSZGRdbGGXqhQ&oh=00_AYHROS3Vdqek7F1wzAjf60h1IBxWnzTUgxEmBvMxJuP3OA&oe=67F748FB" alt="Our Store" style="width: 100%; border-radius: 10px;">
                 </div>
                 <div style="flex: 1; min-width: 300px;">
                     <h3 style="margin-bottom: 20px; color: var(--primary); font-size: 1.8em;">Our Story</h3>
@@ -909,13 +909,7 @@ footer {
                 </select>
             </div>
 
-            <div class="form-group whatsapp-field" style="display: none;">
-                <p>Orders will be sent to our WhatsApp: +962 7 90489125</p>
-                <label>
-                    <input type="checkbox" id="send-whatsapp-updates" checked>
-                    I would like to receive order updates via WhatsApp
-                </label>
-            </div>
+            
             <button type="submit" class="checkout-btn">Complete Order</button>
         </form>
     </div>
@@ -1260,16 +1254,85 @@ checkoutBtn.addEventListener('click', function() {
     });
 
     // Handle checkout form submission
-    document.querySelector('.checkout-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-        // Simulate order processing
-        alert('Thank you for your order! Your delicious food will be on its way soon.');
+    document.querySelector('.checkout-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Disable submit button to prevent double submission
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Processing...';
+    
+    try {
+        // Get form data
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        
+        // Basic validation
+        if (!name || !phone) {
+            alert('Please fill in all required fields');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Complete Order';
+            return;
+        }
+        
+        const deliveryType = document.querySelector('input[name="delivery"]:checked').value;
+        const address = deliveryType === 'delivery' 
+            ? document.getElementById('address').value.trim() 
+            : 'Store Pickup';
+        const payment = document.getElementById('payment').value;
+        const notes = document.getElementById('notes').value.trim();
+        
+        // Format order items
+        const orderItems = cart.map(item => 
+            `${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(2)}`
+        ).join('\n');
+        
+        const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+        const shipping = subtotal >= freeDeliveryThreshold ? 0 : deliveryFee;
+        const total = (subtotal + shipping).toFixed(2);
+        
+        // Create WhatsApp message
+        const message = `📋 *NEW ORDER* 📋\n\n` +
+                       `👤 *Customer*: ${name}\n` +
+                       `📞 *Phone*: ${phone}\n` +
+                       `🚚 *Delivery*: ${deliveryType}\n` +
+                       `📍 *Address*: ${address}\n` +
+                       `💳 *Payment*: ${payment}\n\n` +
+                       `🛒 *Order Items*:\n${orderItems}\n\n` +
+                       `💰 *Subtotal*: $${subtotal.toFixed(2)}\n` +
+                       `🚛 *Delivery*: $${shipping.toFixed(2)}\n` +
+                       `💵 *Total*: $${total}\n\n` +
+                       `📝 *Notes*: ${notes || 'None'}`;
+        
+        // Open WhatsApp
+        const whatsappUrl = `https://wa.me/962790489125?text=${encodeURIComponent(message)}`;
+        
+        // Try to open WhatsApp, fallback to alert if it fails
+        const newWindow = window.open(whatsappUrl, '_blank');
+        if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+            alert('Could not open WhatsApp. Please ensure it is installed or contact us directly.');
+        }
+        
+        // Clear cart and close modals
         cart = [];
         updateCart();
         closeCheckoutModal();
         closeCartFunc();
-    });
-
+        
+    } catch (error) {
+        console.error('Checkout error:', error);
+        alert('An error occurred during checkout. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Complete Order';
+    }
+    // In your WhatsApp opening code:
+setTimeout(function() {
+  if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+    alert('WhatsApp not detected. Please contact us at 00972594777733');
+    // Optionally submit form via AJAX as fallback
+  }
+}, 2000);
+});
     // Set initial state
     updateCart();
     toggleAddressFields();
@@ -1278,66 +1341,14 @@ checkoutBtn.addEventListener('click', function() {
 // Start the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', init);
 function toggleContactFields() {
-    const contactMethod = document.getElementById('contact-method').value;
+    // Hide WhatsApp fields since we're automating this
     const whatsappField = document.querySelector('.whatsapp-field');
-
-    whatsappField.style.display = contactMethod === 'whatsapp' ? 'block' : 'none';
+    if (whatsappField) {
+        whatsappField.style.display = 'none';
+    }
 }
 
-// Add to your checkout form submission handler
-document.querySelector('.checkout-form').addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    // 1. Gather order details
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const deliveryType = document.querySelector('input[name="delivery"]:checked').value;
-    const address = deliveryType === 'delivery' ? document.getElementById('address').value : 'Pickup';
-    const payment = document.getElementById('payment').value;
-    const notes = document.getElementById('notes').value;
-
-    // 2. Format order items
-    const orderItems = cart.map(item => ({
-        name: item.name,
-        quantity: item.quantity,
-        price: (item.price * item.quantity).toFixed(2)
-    }));
-
-    // 3. Calculate total
-    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-    const shipping = subtotal >= freeDeliveryThreshold ? 0 : deliveryFee;
-    const total = (subtotal + shipping).toFixed(2);
-
-    // 4. Send to Python server
-    try {
-        const response = await fetch('http://localhost:5000/send-order', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                name: name,
-                phone: phone,
-                items: orderItems,
-                total: total,
-                address: address,
-                notes: notes
-            })
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-            alert("Order sent successfully! We'll confirm shortly.");
-            cart = [];
-            updateCart();
-            closeCheckoutModal();
-            closeCartFunc();
-        } else {
-            alert("Error: " + (result.error || "Failed to send order."));
-        }
-    } catch (error) {
-        alert("Network error. Please call +962 790489125 to confirm.");
-    }
-});
+       
 
 // Call this on page load
 document.addEventListener('DOMContentLoaded', function () {
@@ -1346,10 +1357,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 // Function to toggle contact fields visibility
 function toggleContactFields() {
-    const contactMethod = document.getElementById('contact-method').value;
-    const whatsappField = document.querySelector('.whatsapp-field');
-
-    whatsappField.style.display = contactMethod === 'whatsapp' ? 'block' : 'none';
+    // Hide WhatsApp fields since we're automating this
+    document.querySelector('.whatsapp-field').style.display = 'none';
 }
 
 // Add to your existing checkout form submission handler
