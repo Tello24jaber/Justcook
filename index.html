@@ -783,7 +783,7 @@
                 <div class="footer-col">
                     <h3>Opening Hours</h3>
                     <p>Pickup: Daily 9 AM - 5 PM</p>
-                    
+
                     <p>Delivery: Daily 10 AM - 5 PM</p>
                 </div>
                 <div class="footer-col">
@@ -888,16 +888,16 @@
             <div class="form-group delivery-address">
                 <label for="city">City</label>
                 <select id="city">
-                    <option value="jerusalem">Jerusalem</option>
-
                     <option value="ramallah">Ramallah</option>
+
+                    <option value="jerusalem">Jerusalem</option>
                 </select>
-            </div> 
+            </div>
             <div class="form-group delivery-address">
                 <label for="address">Delivery Address</label>
                 <input type="text" id="address" placeholder="Specify your address please">
             </div>
-            
+
 
             <div class="form-group">
                 <label for="payment">Payment Method</label>
@@ -911,7 +911,7 @@
                 <label for="notes">Special Instructions</label>
                 <textarea id="notes" rows="3"></textarea>
             </div>
-            
+
 
 
             <button type="submit" class="checkout-btn">Complete Order</button>
@@ -981,9 +981,8 @@
 
         // Cart functionality
         let cart = [];
-        const deliveryFee = 15;
+        let deliveryFee = 15; // Default delivery fee
         const freeDeliveryThreshold = 150;
-
         // DOM Elements
         const productContainer = document.getElementById('product-container');
         const cartIcon = document.getElementById('cart-icon');
@@ -1041,7 +1040,14 @@
         `;
                 productContainer.appendChild(productCard);
             });
-
+            document.getElementById('city').addEventListener('change', function () {
+                if (this.value === 'jerusalem') {
+                    deliveryFee = 30;
+                } else {
+                    deliveryFee = 15;
+                }
+                updateCart(); // Update the cart to reflect the new delivery fee
+            });
             // Add event listeners to "Add to Cart" buttons
             document.querySelectorAll('.add-to-cart').forEach(button => {
                 button.addEventListener('click', function () {
@@ -1054,7 +1060,7 @@
         // Make sure to call the function when the page loads
         document.addEventListener('DOMContentLoaded', function () {
             displayProducts();
-            
+
         });
 
         // Function to add product to cart
@@ -1142,7 +1148,7 @@
 
             // Check if eligible for free delivery
             let shipping = subtotal >= freeDeliveryThreshold ? 0 : deliveryFee;
-            cartDelivery.textContent = shipping === 0 ? 'FREE' : `${shipping.toFixed(2)} Nis`;
+            cartDelivery.textContent = shipping === 0 ? 'FREE' : `${deliveryFee.toFixed(2)} Nis (${document.getElementById('city').value})`;
 
             const total = subtotal + shipping;
             cartTotal.textContent = `${total.toFixed(2)} Nis`;
@@ -1259,121 +1265,124 @@
             });
 
             // Handle checkout form submission
-            document.querySelector('.checkout-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const submitBtn = e.target.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Processing...';
-    
-    try {
-        // 1. Validate inputs
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        if (!name || !phone) {
-            alert('Please fill in name and phone number');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Complete Order';
-            return;
-        }
+            document.querySelector('.checkout-form').addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const submitBtn = e.target.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Processing...';
+                if (deliveryType === 'delivery') {
+                    message += `City: ${city === 'ramallah' ? 'Ramallah' : 'Jerusalem'}\n` +
+                        `Address: ${address}\n`;
+                }
+                try {
+                    // 1. Validate inputs
+                    const name = document.getElementById('name').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    if (!name || !phone) {
+                        alert('Please fill in name and phone number');
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Complete Order';
+                        return;
+                    }
 
-        // 2. Verify cart has items (use the original cart variable)
-        if (cart.length === 0) {
-            alert('Your cart is empty! Please add items before checkout.');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Complete Order';
-            return;
-        }
+                    // 2. Verify cart has items (use the original cart variable)
+                    if (cart.length === 0) {
+                        alert('Your cart is empty! Please add items before checkout.');
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Complete Order';
+                        return;
+                    }
 
-       // 3. Build order items text with validation
-       const currentCart = [...cart];
+                    // 3. Build order items text with validation
+                    const currentCart = [...cart];
 
-if (currentCart.length === 0) {
-    alert('Your cart is empty! Please add items before checkout.');
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Complete Order';
-    return;
-}
+                    if (currentCart.length === 0) {
+                        alert('Your cart is empty! Please add items before checkout.');
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Complete Order';
+                        return;
+                    }
 
-let orderItemsText = '';
-let subtotal = 0;
-let validItems = 0;
+                    let orderItemsText = '';
+                    let subtotal = 0;
+                    let validItems = 0;
 
-currentCart.forEach(item => {
-    if (!item || !item.name || !item.price || !item.quantity) {
-        console.error('Invalid cart item:', item);
-        return;
-    }
-    const itemTotal = item.price * item.quantity;
-    orderItemsText += `${item.quantity}x ${item.name}  Nis ${itemTotal.toFixed(2)}\n`;
-    subtotal += itemTotal;
-    validItems++;
-});
+                    currentCart.forEach(item => {
+                        if (!item || !item.name || !item.price || !item.quantity) {
+                            console.error('Invalid cart item:', item);
+                            return;
+                        }
+                        const itemTotal = item.price * item.quantity;
+                        orderItemsText += `${item.quantity}x ${item.name}  Nis ${itemTotal.toFixed(2)}\n`;
+                        subtotal += itemTotal;
+                        validItems++;
+                    });
 
-if (validItems === 0) {
-    alert('Error: No valid items in cart!');
-    return;
-}
+                    if (validItems === 0) {
+                        alert('Error: No valid items in cart!');
+                        return;
+                    }
 
 
-// 4. Calculate totals
-const shipping = subtotal >= freeDeliveryThreshold ? 0 : deliveryFee;
-const total = subtotal + shipping;
+                    // 4. Calculate totals
+                    const shipping = subtotal >= freeDeliveryThreshold ? 0 : deliveryFee;
+                    const total = subtotal + shipping;
 
-// 5. Build the complete message
-const deliveryType = document.querySelector('input[name="delivery"]:checked').value;
-const address = deliveryType === 'delivery' ? document.getElementById('address').value.trim() : '';
-const city = deliveryType === 'delivery' ? document.getElementById('city').value.trim() : '';
-const payment = document.getElementById('payment').value;
-const notes = document.getElementById('notes').value.trim();
-const contact= document.getElementById('contact').value;
+                    // 5. Build the complete message
+                    const deliveryType = document.querySelector('input[name="delivery"]:checked').value;
+                    const address = deliveryType === 'delivery' ? document.getElementById('address').value.trim() : '';
+                    const city = deliveryType === 'delivery' ? document.getElementById('city').value.trim() : '';
+                    const payment = document.getElementById('payment').value;
+                    const notes = document.getElementById('notes').value.trim();
+                    const contact = document.getElementById('contact').value;
 
-let message = `NEW ORDER\n\n` +
-             `Customer: ${name}\n` +
-             `Phone: ${phone}\n` +
-             `Contact: ${contact === 'phone' ? 'Phone' : 'Whatsapp'}\n` +
-             `Delivery: ${deliveryType === 'delivery' ? 'Home Delivery' : 'Store Pickup'}\n`;
+                    let message = `NEW ORDER\n\n` +
+                        `Customer: ${name}\n` +
+                        `Phone: ${phone}\n` +
+                        `Contact: ${contact === 'phone' ? 'Phone' : 'Whatsapp'}\n` +
+                        `Delivery: ${deliveryType === 'delivery' ? 'Home Delivery' : 'Store Pickup'}\n`;
 
-if (deliveryType === 'delivery') {
-    message += `Address ${address === 'ramallah' ? 'Ramallah' : 'Jerusalem'}\n` ;
-}
+                    if (deliveryType === 'delivery') {
+                        message += `Address: ${address === 'ramallah' ? 'Ramallah' : 'Jerusalem'}\n`;
+                    }
 
-message += `Payment: ${payment === 'cash' ? 'Cash' : 'Card'}\n\n` +
-           `ORDER ITEMS:\n${orderItemsText}\n` +
-           `Subtotal: ${subtotal.toFixed(2)} Nis\n` +
-           `Delivery: ${shipping.toFixed(2)} Nis\n` +
-           `TOTAL: ${total.toFixed(2)} Nis\n\n ` +
-           `Notes: ${notes || 'None'}` ;
+                    message += `Payment: ${payment === 'cash' ? 'Cash' : 'Card'}\n\n` +
+                        `ORDER ITEMS:\n${orderItemsText}\n` +
+                        `Subtotal: ${subtotal.toFixed(2)} Nis\n` +
+                        `Delivery: ${shipping.toFixed(2)} Nis\n` +
+                        `TOTAL: ${total.toFixed(2)} Nis\n\n ` +
+                        `Notes: ${notes || 'None'}`;
 
-console.log('Final message:', message); // Debug
-        // 6. Encode for WhatsApp
-        const whatsappUrl = `https://wa.me/962790489125?text=${encodeURIComponent(message)}`;
+                    console.log('Final message:', message); // Debug
+                    // 6. Encode for WhatsApp
+                    const whatsappUrl = `https://wa.me/962790489125?text=${encodeURIComponent(message)}`;
 
-        // 7. Open WhatsApp in new tab
-        const newWindow = window.open(whatsappUrl, '_blank');
-        
-        // 8. Only clear cart after successful window opening
-        if (newWindow) {
-            cart = [];
-            updateCart();
-        
-        } else {
-            alert('Could not open WhatsApp. Your cart has been preserved. Please try again.');
-        }
+                    // 7. Open WhatsApp in new tab
+                    const newWindow = window.open(whatsappUrl, '_blank');
 
-        // 9. Close modals
-        closeCheckoutModal();
-        closeCartFunc();
-        
-    } catch (error) {
-        console.error('Checkout error:', error);
-        alert('Error processing order. Please try again.');
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Complete Order';
-    }
-});
-document.getElementById('contact-method').addEventListener('change', toggleContactFields);
-toggleContactFields();
+                    // 8. Only clear cart after successful window opening
+                    if (newWindow) {
+                        cart = [];
+                        updateCart();
+
+                    } else {
+                        alert('Could not open WhatsApp. Your cart has been preserved. Please try again.');
+                    }
+
+                    // 9. Close modals
+                    closeCheckoutModal();
+                    closeCartFunc();
+
+                } catch (error) {
+                    console.error('Checkout error:', error);
+                    alert('Error processing order. Please try again.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Complete Order';
+                }
+            });
+            document.getElementById('contact-method').addEventListener('change', toggleContactFields);
+            toggleContactFields();
             // Set initial state
             updateCart();
             toggleAddressFields();
@@ -1381,10 +1390,10 @@ toggleContactFields();
         // Start the app when DOM is loaded
         document.addEventListener('DOMContentLoaded', init);
         function toggleContactFields() {
-    const whatsappField = document.querySelector('.whatsapp-field');
-    const contactMethod = document.getElementById('contact-method').value;
-    whatsappField.style.display = contactMethod === 'whatsapp' ? 'block' : 'none';
-}
+            const whatsappField = document.querySelector('.whatsapp-field');
+            const contactMethod = document.getElementById('contact-method').value;
+            whatsappField.style.display = contactMethod === 'whatsapp' ? 'block' : 'none';
+        }
 
 
 
@@ -1394,7 +1403,7 @@ toggleContactFields();
             toggleContactFields(); // Initialize visibility of WhatsApp field
         });
         // Function to toggle contact fields visibility
-        
+
 
 
 
