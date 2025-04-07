@@ -728,8 +728,8 @@
                 <div class="delivery-option">
                     <h3><i>🚚</i> Home Delivery</h3>
                     <p>We deliver to your doorstep in Ramallah and it's villages. Delivery is available 7 days a
-                        week from 1 AM to 10 PM.</p>
-                    <p>Delivery fee is based on your location<br>Free delivery on orders over 15$ </p>
+                        week from 10 AM to 5 PM.</p>
+                    <p>Delivery fee is based on your location<br>Free delivery on orders over 150 Nis </p>
                     <p>Average delivery time: 40-60 minutes</p>
                 </div>
                 <div class="delivery-option">
@@ -737,7 +737,7 @@
                     <p>Order online and pick up at our store at your convenience. Your order will be ready in 30
                         minutes.</p>
                     <p>Store address:<br>Ramallah<br>Ein Musbah, Main street, next to Al-Kamal supermarket</p>
-                    <p>pickup hours: 1 AM - 11 PM daily</p>
+                    <p>pickup hours: 9 AM - 5 PM daily</p>
                 </div>
             </div>
         </div>
@@ -782,9 +782,9 @@
                 </div>
                 <div class="footer-col">
                     <h3>Opening Hours</h3>
-                    <p>Saturday-Thursday: 11 AM - 11 PM</p>
-                    <p>Friday: 1 PM - 11 PM</p>
-                    <p>Delivery: Daily 1 AM - 10 PM</p>
+                    <p>Pickup: Daily 9 AM - 5 PM</p>
+                    
+                    <p>Delivery: Daily 10 AM - 5 PM</p>
                 </div>
                 <div class="footer-col">
 
@@ -829,15 +829,15 @@
         <div class="cart-summary">
             <div class="cart-summary-row">
                 <span>Subtotal:</span>
-                <span id="cart-subtotal">$0.00</span>
+                <span id="cart-subtotal">0.00 Nis</span>
             </div>
             <div class="cart-summary-row">
                 <span>Delivery:</span>
-                <span id="cart-delivery">$1.99</span>
+                <span id="cart-delivery">15 Nis</span>
             </div>
             <div class="cart-summary-row total">
                 <span>Total:</span>
-                <span id="cart-total">$1.99</span>
+                <span id="cart-total">15 Nis</span>
             </div>
             <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
         </div>
@@ -877,26 +877,27 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="contact-method">Preferred Contact Method</label>
-                <select id="contact-method" onchange="toggleContactFields()">
+                <label for="contact">Preferred Contact Method</label>
+                <select id="contact" onchange="toggleContactFields()">
 
-                    <option value="phone">Phone Call</option>
+                    <option value="phone">phone</option>
                     <option value="whatsapp">WhatsApp</option>
                 </select>
             </div>
 
-            <div class="form-group whatsapp-field">
-                <label for="whatsapp">WhatsApp Number</label>
-                <input type="tel" id="whatsapp" placeholder="Include country code (e.g., +1)">
-            </div>
-            <div class="form-group delivery-address">
-                <label for="address">Delivery Address</label>
-                <input type="text" id="address" placeholder="Street Address">
-            </div>
             <div class="form-group delivery-address">
                 <label for="city">City</label>
-                <input type="text" id="city">
+                <select id="city">
+                    <option value="jerusalem">Jerusalem</option>
+
+                    <option value="ramallah">Ramallah</option>
+                </select>
+            </div> 
+            <div class="form-group delivery-address">
+                <label for="address">Delivery Address</label>
+                <input type="text" id="address" placeholder="Specify your address please">
             </div>
+            
 
             <div class="form-group">
                 <label for="payment">Payment Method</label>
@@ -910,13 +911,7 @@
                 <label for="notes">Special Instructions</label>
                 <textarea id="notes" rows="3"></textarea>
             </div>
-            <div class="form-group">
-                <label for="contact-method">How would you like to receive order confirmations?</label>
-                <select id="contact-method" onchange="toggleContactFields()">
-                    <option value="phone">Phone Call</option>
-                    <option value="whatsapp">WhatsApp</option>
-                </select>
-            </div>
+            
 
 
             <button type="submit" class="checkout-btn">Complete Order</button>
@@ -930,64 +925,64 @@
                 id: 1,
                 name: "Vine Leaves",
                 description: "stuffed vine leaves with rice and meat",
-                price: 5.99,
+                price: 30,
                 image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473189139_122224203482028929_1936030488887112106_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=CyD68s8BghwQ7kNvwEkfRIy&_nc_oc=AdmQO7MXz7_myjX0ONG-IZGjNWrwOTn6y27VxSJ1UTp5AOJGu5lMH3jwwy-qenMrPS8&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=CU4WcysUsHWACNKXvgthMQ&oh=00_AYFxuVfxQ4LdBeKhcwDot2ZApD0DFwZqBlbBQgHCAagh9Q&oe=67F59184"
             },
             {
                 id: 2,
                 name: "Chopped vegetables",
                 description: "Chopped vegetables for (Maqlouba)",
-                price: 3.99,
+                price: 25,
                 image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473567276_122224203104028929_1760873919538438817_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=LmLziwaGQFYQ7kNvwEBmuM_&_nc_oc=AdnR2cFD0FqKoSn36YCWgxp6-2MCCCkybnCn-dZjbyIiR6OXQ1o8mUfIQ1fvZ-af-Zc&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=SfnOycs4IyJ0sH8Llt1ByA&oh=00_AYExErHyb5re91eohF5KbZlT-OqC6eoj7RYWv7jRqa8Slg&oe=67F5B7C7"
             },
             {
                 id: 3,
                 name: "Cabbage ",
                 description: "cabbage stuffed with rice and meat for (Malfouf)",
-                price: 4.99,
+                price: 30,
                 image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473428057_122224203578028929_33452605139705403_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Jg4Mh-sJELMQ7kNvwGJVgOI&_nc_oc=AdmwHIRdChCr6cf3IDWMd3NXTeeU-DL3r0R_gCBXZ8LNgK85t12z7krqvLfphNTwPmw&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=CCfRn749zHNJdOTE0lK2bg&oh=00_AYHvLhPDFACBKmLZfSlvnxGNV4Dsp1Q0LQF0GZR9VuOOZA&oe=67F5B024"
             },
             {
                 id: 4,
                 name: "Makhshi",
                 description: "Zucchini stuffed with meat and onions for (Makhshi)",
-                price: 5.99,
+                price: 30,
                 image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473078575_122224203590028929_4519399291118971478_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=CyTN39QBZXMQ7kNvwHgtKXw&_nc_oc=AdkD3k3XC-pJzhMw3zJYOg48MvCwEJ7OOAGGXiJScEi93VIn4lHfY5z-weWVYoU2fr0&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=6dVuSJ-kaYJRWEBQtPj-yw&oh=00_AYEh_IWu1EOJgh9Cghi1rO7zGBFCMySIeBPhrWwOjQCdqw&oe=67F5AAB9"
             },
             {
                 id: 5,
                 name: "Salmon",
                 description: "ready Salmon with herbs and vegetables",
-                price: 8.49,
+                price: 55,
                 image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473309856_122224203656028929_4150288380146970553_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=WuYxcHN3lVEQ7kNvwFvODxz&_nc_oc=AdlhNSTLZJHGAEv5h8S9HulGVAFFWR2r1UKW5oeQCmHqc0Z6_yFFsXYrjM7xOM235_0&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=gCKImQGAPfS1lJNJSYEOlg&oh=00_AYGsapK0S5gpiqwbXWLFPcFbRoG846wDa2A5gO3tDMfNzw&oe=67F5AEFB"
             },
             {
                 id: 6,
                 name: "Zucchini",
                 description: "cored zucchini",
-                price: 3.99,
+                price: 20,
                 image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/482092574_122234600438028929_9059919598890993654_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=CtvfFV5BrUUQ7kNvwHiWCRU&_nc_oc=AdlBccnFEBF5oboIAKnstKoDR16rNFTIqGHrfF3B0pWqPSBMJV28zzWTR88rCsU4iHI&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=_ADFdGK7XIyJMrWfXicx-Q&oh=00_AYEFFhZMHRG3bgsy6wkQ4Iyrzh2-yCGek_08Xdymm2d37w&oe=67F5B8EE"
             },
             {
                 id: 7,
                 name: "Kibbeh",
                 description: "stuffed with ground meat and onions",
-                price: 4.99,
+                price: 30,
                 image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/480449107_122234600462028929_3028387972017383613_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=-vGw_BKj99gQ7kNvwFjchTf&_nc_oc=AdmR51FzzuDCeTOQVrWM6rfEfPJXhHlYBSP6OZJBJ1b8TFCRKU-gvvhnt6B7WgZjAm0&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=hzP2oDJ4tYgJU3YwAsOqDQ&oh=00_AYER1fZBgpiNTcDelAy4lW4tj4CO2-ozTgYeJRx3s3ex3A&oe=67F59CA5"
             },
             {
                 id: 8,
                 name: "Family Chicken",
                 description: "A whole chicken stuffed with vine leaves",
-                price: 14.99,
+                price: 75,
                 image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/470667568_122219972066028929_5658429188180535149_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=QGxmRt6eaa8Q7kNvwHY4569&_nc_oc=Adl7SdCYBxEWVElRuhFxoE-JiiBbneLhVzA9szomWPHSqXFhkNEXvYwwO0p9S5cyXdM&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=m2aRHAXPhfHwwUvrtPOxtg&oh=00_AYEUNCZA3KtrNbPZusI_n355FnPk3zpDnfuKUWpwvhvBDA&oe=67F5AD13"
             }
         ];
 
         // Cart functionality
         let cart = [];
-        const deliveryFee = 1.99;
-        const freeDeliveryThreshold = 15;
+        const deliveryFee = 15;
+        const freeDeliveryThreshold = 150;
 
         // DOM Elements
         const productContainer = document.getElementById('product-container');
@@ -1038,7 +1033,7 @@
             <div class="product-info">
                 <h3 class="product-title">${product.name}</h3>
                 <p class="product-description">${product.description}</p>
-                <p class="product-price">$${product.price.toFixed(2)}</p>
+                <p class="product-price">${product.price.toFixed(2)} Nis</p>
                 <div class="product-actions">
                     <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
                 </div>
@@ -1099,7 +1094,7 @@
         <img src="${item.image}" alt="${item.name}" class="cart-item-img">
         <div class="cart-item-details">
             <h4 class="cart-item-title">${item.name}</h4>
-            <p class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</p>
+            <p class="cart-item-price"> ${(item.price * item.quantity).toFixed(2)} Nis</p>
             <div class="cart-item-quantity">
                 <button class="quantity-btn decrease" data-id="${item.id}">-</button>
                 <input type="number" value="${item.quantity}" min="1" class="quantity-input" data-id="${item.id}">
@@ -1143,14 +1138,14 @@
 
             // Calculate and update totals
             const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-            cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+            cartSubtotal.textContent = `${subtotal.toFixed(2)} Nis`;
 
             // Check if eligible for free delivery
             let shipping = subtotal >= freeDeliveryThreshold ? 0 : deliveryFee;
-            cartDelivery.textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
+            cartDelivery.textContent = shipping === 0 ? 'FREE' : `${shipping.toFixed(2)} Nis`;
 
             const total = subtotal + shipping;
-            cartTotal.textContent = `$${total.toFixed(2)}`;
+            cartTotal.textContent = `${total.toFixed(2)} Nis`;
 
             // Update cart count
             const itemCount = cart.reduce((count, item) => count + item.quantity, 0);
@@ -1309,7 +1304,7 @@ currentCart.forEach(item => {
         return;
     }
     const itemTotal = item.price * item.quantity;
-    orderItemsText += `${item.quantity}x ${item.name}  $${itemTotal.toFixed(2)}\n`;
+    orderItemsText += `${item.quantity}x ${item.name}  Nis ${itemTotal.toFixed(2)}\n`;
     subtotal += itemTotal;
     validItems++;
 });
@@ -1330,22 +1325,24 @@ const address = deliveryType === 'delivery' ? document.getElementById('address')
 const city = deliveryType === 'delivery' ? document.getElementById('city').value.trim() : '';
 const payment = document.getElementById('payment').value;
 const notes = document.getElementById('notes').value.trim();
+const contact= document.getElementById('contact').value;
 
 let message = `NEW ORDER\n\n` +
              `Customer: ${name}\n` +
              `Phone: ${phone}\n` +
+             `Contact: ${contact === 'phone' ? 'Phone' : 'Whatsapp'}\n` +
              `Delivery: ${deliveryType === 'delivery' ? 'Home Delivery' : 'Store Pickup'}\n`;
 
 if (deliveryType === 'delivery') {
-    message += `Address: ${address}, ${city}\n`;
+    message += `Address ${address === 'ramallah' ? 'Ramallah' : 'Jerusalem'}\n` ;
 }
 
 message += `Payment: ${payment === 'cash' ? 'Cash' : 'Card'}\n\n` +
            `ORDER ITEMS:\n${orderItemsText}\n` +
-           `Subtotal: $${subtotal.toFixed(2)}\n` +
-           `Delivery: $${shipping.toFixed(2)}\n` +
-           `TOTAL: $${total.toFixed(2)}\n\n` +
-           `Notes: ${notes || 'None'}`;
+           `Subtotal: ${subtotal.toFixed(2)} Nis\n` +
+           `Delivery: ${shipping.toFixed(2)} Nis\n` +
+           `TOTAL: ${total.toFixed(2)} Nis\n\n ` +
+           `Notes: ${notes || 'None'}` ;
 
 console.log('Final message:', message); // Debug
         // 6. Encode for WhatsApp
