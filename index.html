@@ -669,6 +669,11 @@
             </div>
         </div>
     </header>
+    <div id="hours-banner"
+        style="display: none; background-color: #ff4444; color: white; padding: 15px; text-align: center; font-weight: bold;">
+        We are currently closed. Orders are available from 11:00 AM to 5:00 PM.
+    </div>
+
 
     <!-- Hero Section -->
     <section class="hero">
@@ -749,8 +754,7 @@
             <h2 class="section-title">About <span>Us</span></h2>
             <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
                 <div style="flex: 1; min-width: 300px;">
-                    <img src="https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/483369147_122234600420028929_1377029657629626266_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEfKEDYdSOVbJlCPqP43NVlhHQk_3KEcSCEdCT_coRxICKFelFqnUcu6uXRZHDl3cfDKRtL3pvSutI-0fZNDb58&_nc_ohc=uTpHPmQFui4Q7kNvwFQsvd7&_nc_oc=Admfcix42wUMih0ZDTGCi3ZbrWl35ugFXoESM1cPtLJSWlMQpMZdsqMwNGoWifPiawE&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=ZXbWepPcefSZGRdbGGXqhQ&oh=00_AYHROS3Vdqek7F1wzAjf60h1IBxWnzTUgxEmBvMxJuP3OA&oe=67F748FB"
-                        alt="Our Store" style="width: 100%; border-radius: 10px;">
+                    <img src="images/sidepic.png" alt="Our Store" style="width: 100%; border-radius: 10px;">
                 </div>
                 <div style="flex: 1; min-width: 300px;">
                     <h3 style="margin-bottom: 20px; color: var(--primary); font-size: 1.8em;">Our Story</h3>
@@ -831,7 +835,7 @@
                 <span>Subtotal:</span>
                 <span id="cart-subtotal">0.00 Nis</span>
             </div>
-            
+
             <div class="cart-summary-row total">
                 <span>Total:</span>
                 <span id="cart-total">00 Nis</span>
@@ -849,18 +853,18 @@
             <h3>Checkout</h3>
             <button class="close-modal" id="close-modal">×</button>
         </div>
-        <form class="checkout-form">
+        <form class="checkout-form" action="https://formsubmit.co/talal123542006@gmail.com" method="POST">
             <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" required>
+                <input type="text" id="name" name="Full Name" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" required>
+                <input type="email" id="email" name="Email" required>
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" required>
+                <input type="tel" id="phone" name="Phone Number" required>
             </div>
             <div class="form-group">
                 <label>Delivery Option</label>
@@ -892,7 +896,7 @@
             </div>
             <div class="form-group delivery-address">
                 <label for="address">Delivery Address</label>
-                <input type="text" id="address" placeholder="Specify your address please">
+                <input type="text" id="address" name="Delivery Address" placeholder="Specify your address please">
             </div>
 
 
@@ -906,8 +910,11 @@
             </div>
             <div class="form-group">
                 <label for="notes">Special Instructions</label>
-                <textarea id="notes" rows="3"></textarea>
+                <textarea id="notes" name="Special Instructions" rows="3"></textarea>
             </div>
+            <input type="hidden" name="_subject" value="New Order from Just Cook">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
 
 
 
@@ -915,6 +922,7 @@
         </form>
     </div>
     <script>
+
         // Product data
 
         const products = [
@@ -923,56 +931,56 @@
                 name: "ورق عنب ",
                 description: "stuffed vine leaves with rice and meat",
                 price: 30,
-                image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473189139_122224203482028929_1936030488887112106_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=CyD68s8BghwQ7kNvwEkfRIy&_nc_oc=AdmQO7MXz7_myjX0ONG-IZGjNWrwOTn6y27VxSJ1UTp5AOJGu5lMH3jwwy-qenMrPS8&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=CU4WcysUsHWACNKXvgthMQ&oh=00_AYFxuVfxQ4LdBeKhcwDot2ZApD0DFwZqBlbBQgHCAagh9Q&oe=67F59184"
+                image: "images/vine.jpg"
             },
             {
                 id: 2,
                 name: "خضروات مقطعة",
                 description: "Chopped vegetables for (Maqlouba)",
                 price: 25,
-                image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473567276_122224203104028929_1760873919538438817_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=LmLziwaGQFYQ7kNvwEBmuM_&_nc_oc=AdnR2cFD0FqKoSn36YCWgxp6-2MCCCkybnCn-dZjbyIiR6OXQ1o8mUfIQ1fvZ-af-Zc&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=SfnOycs4IyJ0sH8Llt1ByA&oh=00_AYExErHyb5re91eohF5KbZlT-OqC6eoj7RYWv7jRqa8Slg&oe=67F5B7C7"
+                image: "images/vegetables.jpg"
             },
             {
                 id: 3,
                 name: "ملفوف ",
                 description: "cabbage stuffed with rice and meat for (Malfouf)",
                 price: 30,
-                image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473428057_122224203578028929_33452605139705403_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Jg4Mh-sJELMQ7kNvwGJVgOI&_nc_oc=AdmwHIRdChCr6cf3IDWMd3NXTeeU-DL3r0R_gCBXZ8LNgK85t12z7krqvLfphNTwPmw&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=CCfRn749zHNJdOTE0lK2bg&oh=00_AYHvLhPDFACBKmLZfSlvnxGNV4Dsp1Q0LQF0GZR9VuOOZA&oe=67F5B024"
+                image: "images/malfouf.jpg"
             },
             {
                 id: 4,
                 name: "كوسا مخشي",
                 description: "Zucchini stuffed with meat and onions",
                 price: 30,
-                image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473078575_122224203590028929_4519399291118971478_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=CyTN39QBZXMQ7kNvwHgtKXw&_nc_oc=AdkD3k3XC-pJzhMw3zJYOg48MvCwEJ7OOAGGXiJScEi93VIn4lHfY5z-weWVYoU2fr0&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=6dVuSJ-kaYJRWEBQtPj-yw&oh=00_AYEh_IWu1EOJgh9Cghi1rO7zGBFCMySIeBPhrWwOjQCdqw&oe=67F5AAB9"
+                image: "images/mukhshi.jpg"
             },
             {
                 id: 5,
                 name: "سمك سالمون",
                 description: "Salmon with herbs and vegetables",
                 price: 55,
-                image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/473309856_122224203656028929_4150288380146970553_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=WuYxcHN3lVEQ7kNvwFvODxz&_nc_oc=AdlhNSTLZJHGAEv5h8S9HulGVAFFWR2r1UKW5oeQCmHqc0Z6_yFFsXYrjM7xOM235_0&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=gCKImQGAPfS1lJNJSYEOlg&oh=00_AYGsapK0S5gpiqwbXWLFPcFbRoG846wDa2A5gO3tDMfNzw&oe=67F5AEFB"
+                image: "images/salmon.jpg"
             },
             {
                 id: 6,
                 name: "كوسا محفور",
                 description: "cored zucchini",
                 price: 20,
-                image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/482092574_122234600438028929_9059919598890993654_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=CtvfFV5BrUUQ7kNvwHiWCRU&_nc_oc=AdlBccnFEBF5oboIAKnstKoDR16rNFTIqGHrfF3B0pWqPSBMJV28zzWTR88rCsU4iHI&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=_ADFdGK7XIyJMrWfXicx-Q&oh=00_AYEFFhZMHRG3bgsy6wkQ4Iyrzh2-yCGek_08Xdymm2d37w&oe=67F5B8EE"
+                image: "images/zucchini.jpg"
             },
             {
                 id: 7,
                 name: "كبة",
                 description: "stuffed with ground meat and onions",
                 price: 30,
-                image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/480449107_122234600462028929_3028387972017383613_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=-vGw_BKj99gQ7kNvwFjchTf&_nc_oc=AdmR51FzzuDCeTOQVrWM6rfEfPJXhHlYBSP6OZJBJ1b8TFCRKU-gvvhnt6B7WgZjAm0&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=hzP2oDJ4tYgJU3YwAsOqDQ&oh=00_AYER1fZBgpiNTcDelAy4lW4tj4CO2-ozTgYeJRx3s3ex3A&oe=67F59CA5"
+                image: "images/kubbeh.jpg"
             },
             {
                 id: 8,
                 name: "دجاجة محشوة مع ورق عنب",
                 description: "A whole chicken stuffed with vine leaves",
                 price: 75,
-                image: "https://scontent.famm8-1.fna.fbcdn.net/v/t39.30808-6/470667568_122219972066028929_5658429188180535149_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=QGxmRt6eaa8Q7kNvwHY4569&_nc_oc=Adl7SdCYBxEWVElRuhFxoE-JiiBbneLhVzA9szomWPHSqXFhkNEXvYwwO0p9S5cyXdM&_nc_zt=23&_nc_ht=scontent.famm8-1.fna&_nc_gid=m2aRHAXPhfHwwUvrtPOxtg&oh=00_AYEUNCZA3KtrNbPZusI_n355FnPk3zpDnfuKUWpwvhvBDA&oe=67F5AD13"
+                image: "images/chicken.jpg"
             }
         ];
 
@@ -1037,7 +1045,7 @@
         `;
                 productContainer.appendChild(productCard);
             });
-            
+
             // Add event listeners to "Add to Cart" buttons
             document.querySelectorAll('.add-to-cart').forEach(button => {
                 button.addEventListener('click', function () {
@@ -1138,8 +1146,8 @@
 
             // Check if eligible for free delivery
             let shipping = subtotal >= freeDeliveryThreshold ? 0 : deliveryFee;
-            
-            const total = subtotal ;
+
+            const total = subtotal;
             cartTotal.textContent = `${total.toFixed(2)} Nis`;
 
             // Update cart count
@@ -1254,120 +1262,138 @@
             });
 
             // Handle checkout form submission
-            // Handle checkout form submission
-document.querySelector('.checkout-form').addEventListener('submit', async function (e) {
-    e.preventDefault();
-    const submitBtn = e.target.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Processing...';
-    
-    try {
-        // 1. Validate inputs
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        if (!name || !phone) {
-            alert('Please fill in name and phone number');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Complete Order';
-            return;
-        }
+            document.querySelector('.checkout-form').addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const submitBtn = e.target.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Processing...';
 
-        // 2. Verify cart has items
-        if (cart.length === 0) {
-            alert('Your cart is empty! Please add items before checkout.');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Complete Order';
-            return;
-        }
+                try {
+                    // 1. Validate inputs
+                    const name = document.getElementById('name').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    if (!name || !phone) {
+                        alert('Please fill in name and phone number');
+                        return;
+                    }
 
-        // 3. Build order items text
-        let orderItemsText = '';
-        let subtotal = 0;
-        
-        cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            orderItemsText += `${item.quantity}x ${item.name} - Nis ${itemTotal.toFixed(2)}\n`;
-            subtotal += itemTotal;
-        });
+                    // 2. Verify cart has items
+                    if (cart.length === 0) {
+                        alert('Your cart is empty! Please add items before checkout.');
+                        return;
+                    }
 
-        // 4. Calculate totals
-        const deliveryType = document.querySelector('input[name="delivery"]:checked').value;
-        const shipping = subtotal >= freeDeliveryThreshold ? 0 : deliveryFee;
-        const total = subtotal ;
+                    // 3. Build order data for SheetDB
+                    const orderData = {
+                        Customer: name,
+                        Phone: phone,
+                        Contact: document.getElementById('contact').value,
+                        Delivery: document.querySelector('input[name="delivery"]:checked').value,
+                        City: "", // Initialize as empty string
+                        Address: "", // Initialize as empty string
+                        Payment: document.getElementById('payment').value,
+                        "ORDER ITEMS": cart.map(item => `${item.quantity}x ${item.name}`).join(', '),
+                        Subtotal: cart.reduce((total, item) => total + (item.price * item.quantity), 0),
+                        Notes: document.getElementById('notes').value.trim()
+                    };
 
-        // 5. Build the complete message
-        const address = deliveryType === 'delivery' ? document.getElementById('address').value.trim() : '';
-        const city = deliveryType === 'delivery' ? document.getElementById('city').value.trim() : '';
-        const payment = document.getElementById('payment').value;
-        const notes = document.getElementById('notes').value.trim();
-        const contact = document.getElementById('contact').value;
+                    // Add delivery-specific fields if needed
+                    if (orderData.Delivery === "delivery") {
+                        orderData.City = document.getElementById('city').value;
+                        orderData.Address = document.getElementById('address').value;
+                    }
 
-        let message = `NEW ORDER\n\n` +
-            `Customer: ${name}\n` +
-            `Phone: ${phone}\n` +
-            `Contact: ${contact === 'phone' ? 'Phone' : 'Whatsapp'}\n` +
-            `Delivery: ${deliveryType === 'delivery' ? 'Home Delivery' : 'Store Pickup'}\n`;
+                    // 4. Send to SheetDB
+                    const response = await fetch("https://sheetdb.io/api/v1/q60skgagstajf", {
+                        method: "POST",
+                        mode: "cors",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ data: [orderData] })
+                    });
 
-        if (deliveryType === 'delivery') {
-            message += `City: ${city === 'ramallah' ? 'رام الله' : 'قرى رام الله'}\n` +
-                      `Address: ${address}\n`;
-        }
+                    // Add response validation:
+                    if (response.ok) {
+                        const responseData = await response.json();
+                        console.log('SheetDB Response:', responseData);
+                        if (responseData.created === 1) {
+                            // Success handlingfunction showOrderConfirmation(orderData) {
+                            const confirmation = document.createElement('div');
+                            confirmation.style = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        z-index: 10000;
+        text-align: center;
+    `;
 
-        message += `Payment: ${payment === 'cash' ? 'Cash' : 'Card'}\n\n` +
-            `ORDER ITEMS:\n${orderItemsText}\n` +
-            `Subtotal: ${subtotal.toFixed(2)} Nis\n` +
-            
-            `TOTAL: ${total.toFixed(2)} + delivery fees Nis\n\n` +
-            `Notes: ${notes || 'None'}`;
+                            confirmation.innerHTML = `
+        <h3>🎉 Order Placed Successfully!</h3>
+        <p>We've received your order for <strong>${orderData["ORDER ITEMS"]}</strong></p>
+        <p>Total: ${orderData.Subtotal} NIS</p>
+        <p>We'll contact you at ${orderData.Phone} to confirm delivery</p>
+        <button onclick="this.parentElement.remove()" 
+            style="margin-top: 1rem; padding: 0.5rem 1.5rem; background: #ff6b00; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            OK
+        </button>
+    `
+    submitBtn.disabled = false;
+    cart = [];
+    updateCart();
+    closeCartFunc();
+    closeCheckoutModal();
+  
+    submitBtn.textContent = 'Complete Order';
 
-        // 6. Encode for WhatsApp
-        const whatsappUrl = `https://wa.me/962790489125?text=${encodeURIComponent(message)}`;
+    ;
 
-        // 7. Open WhatsApp in new tab
-        const newWindow = window.open(whatsappUrl, '_blank');
+                            document.body.appendChild(confirmation);
 
-        // 8. Only clear cart after successful window opening
-        if (newWindow) {
-            cart = [];
-            updateCart();
-            closeCheckoutModal();
-            closeCartFunc();
-        } else {
-            alert('Could not open WhatsApp. Your cart has been preserved. Please try again.');
-        }
-
-    } catch (error) {
-        console.error('Checkout error:', error);
-        alert('Error processing order. Please try again.');
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Complete Order';
-    }
-});
+                        } else {
+                            throw new Error('SheetDB created 0 records');
+                        }
+                    } else {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                } // Modify your catch block to show more details:
+                catch (error) {
+                    console.error('Error:', error);
+                    console.log('Order Data:', orderData); // Add this
+                    console.log('Response Status:', response.status); // Add this
+                    const errorBody = await response.text();
+                    console.log('Response Body:', errorBody); // Add this
+                    alert(`Error: ${errorBody || error.message}`);
+                }
+            });
             document.getElementById('contact-method').addEventListener('change', toggleContactFields);
             toggleContactFields();
             // Set initial state
             updateCart();
             toggleAddressFields();
         }
-        // Start the app when DOM is loaded
-        document.addEventListener('DOMContentLoaded', init);
-        function toggleContactFields() {
-            const whatsappField = document.querySelector('.whatsapp-field');
-            const contactMethod = document.getElementById('contact-method').value;
-            whatsappField.style.display = contactMethod === 'whatsapp' ? 'block' : 'none';
-        }
 
+        //         function checkBusinessHours() {
+        //         const banner = document.getElementById('hours-banner');
+        //         const now = new Date();
+        //         const hour = now.getHours();
 
+        //         // Business hours: 10 AM  to 5 PM 
+        //         if (hour < 10 || hour >= 17) {
+        //             banner.style.display = 'block';
+        //         }
+        //     }
 
-        // Call this on page load
-        document.addEventListener('DOMContentLoaded', function () {
-            // Rest of your init code
-            toggleContactFields(); // Initialize visibility of WhatsApp field
-        });
-        // Function to toggle contact fields visibility
-
-
+        //     document.addEventListener('DOMContentLoaded', checkBusinessHours);
+        //     if (hour < 10 || hour >= 17) {
+        //     const buttons = document.querySelectorAll('.btn, .checkout-btn');
+        //     buttons.forEach(btn => btn.disabled = true);
+        // }
 
 
         document.addEventListener('DOMContentLoaded', function () {
