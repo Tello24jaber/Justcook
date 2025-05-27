@@ -2405,9 +2405,9 @@
         const deliveryAddressFields = document.querySelectorAll('.delivery-address');
         const body = document.body;
 
-        const SHEETDB_API_URL = "https://sheetdb.io/api/v1/x7godm1u5sy07";
+        const SHEETDB_API_URL = "https://sheetdb.io/api/v1/o3okeg0qb05on";
         SHEETDB_API_URL2 = "https://sheetdb.io/api/v1/ughkg71ixwwo3";
-        const CHECK_INTERVAL = 10000; // 10 seconds
+        const CHECK_INTERVAL = 10000; // 10000 seconds
 
         // Order tracking variables
         let orderId = null;
@@ -3551,7 +3551,7 @@
                         }
 
                         // 4. Send to SheetDB
-                        const response = await fetch("https://sheetdb.io/api/v1/x7godm1u5sy07", {
+                        const response = await fetch("https://sheetdb.io/api/v1/o3okeg0qb05on", {
                             method: "POST",
                             mode: "cors",
                             headers: {
